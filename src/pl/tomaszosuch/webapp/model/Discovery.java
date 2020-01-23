@@ -11,6 +11,7 @@ public class Discovery {
     private User user;
     private int upVote;
     private int downVote;
+    private int numberOfComments;
 
     public Discovery() {}
 
@@ -23,6 +24,7 @@ public class Discovery {
         this.user = new User(discovery.user);
         this.upVote = discovery.upVote;
         this.downVote = discovery.downVote;
+        this.numberOfComments = discovery.numberOfComments;
     }
 
     public long getId() {
@@ -89,6 +91,14 @@ public class Discovery {
         this.downVote = downVote;
     }
 
+    public int getNumberOfComments() {
+        return numberOfComments;
+    }
+
+    public void setNumberOfComments(int numberOfComments) {
+        this.numberOfComments = numberOfComments;
+    }
+
     @Override
     public String toString() {
         return "Discovery [id=" + id + ", name=" + name + ", description=" + description + ", url="
@@ -147,10 +157,7 @@ public class Discovery {
         } else if (!url.equals(other.url))
             return false;
         if (user == null) {
-            if (other.user != null)
-                return false;
-        } else if (!user.equals(other.user))
-            return false;
-        return true;
+            return other.user == null;
+        } else return user.equals(other.user);
     }
 }
